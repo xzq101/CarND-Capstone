@@ -14,6 +14,8 @@ import cv2
 import yaml
 import math
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 STATE_COUNT_THRESHOLD = 3
 
@@ -139,6 +141,11 @@ class TLDetector(object):
             int: ID of traffic light color (specified in styx_msgs/TrafficLight)
 
         """
+	cv_image = self.bridge.imgmsg_to_cv2(self.camera_image, "bgr8")
+	height, width, channels = cv_image.shape
+	#print height, width, channels	
+	predicted = self.light_classifier.get_classification(cv_image)
+	print "light.state: ",light.state," predicted:",predicted
    	#rospy.loginfo("Sim ground truth state: {}".format(light.state))
 	return light.state
 

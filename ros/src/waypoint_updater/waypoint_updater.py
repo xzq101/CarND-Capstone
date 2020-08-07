@@ -58,8 +58,8 @@ class WaypointUpdater(object):
 
 
     def loop(self):
-        rate = rospy.Rate(50)  # reduced from 50Hz to 20Hz
- 
+        #rate = rospy.Rate(50)  # reduced from 50Hz to 20Hz
+        rate = rospy.Rate(25)  # reduced from 50Hz to 20Hz 
         while not rospy.is_shutdown():
             if self.pose and self.base_lane:
                 # Get closest waypoint
